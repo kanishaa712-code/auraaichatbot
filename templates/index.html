@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aura AI - an intelligent FAQ support assistant powered by NLP.">
+  <title>Aura AI - Intelligent Support</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob blob--pink"></span>
+    <span class="blob blob--lilac"></span>
+    <span class="blob blob--violet"></span>
+  </div>
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <div>
+          <p class="brand__name">Aura AI</p>
+          <p class="brand__tag">Intelligent Support</p>
+        </div>
+      </div>
+
+      <button type="button" id="newChatBtn" class="btn-new">＋ New conversation</button>
+
+      <div class="assistant-card">
+        <span class="avatar avatar--lg">
+          <img src="{{ url_for('static', filename='ai.png') }}" alt="Aura AI robot">
+        </span>
+        <div>
+          <p class="assistant-card__name">Aura Assistant</p>
+          <p class="assistant-card__status"><span class="dot"></span>Online and ready</p>
+        </div>
+      </div>
+
+      <div class="sidebar__footer">
+        <p class="sidebar__footer-title">AI Support</p>
+        <p class="sidebar__footer-sub">Powered by NLP</p>
+      </div>
+    </aside>
+
+    <!-- ============ CHAT PANEL ============ -->
+    <main class="chat" id="chatPanel">
+
+      <header class="chat__header">
+        <div>
+          <h1 class="chat__title">Aura AI</h1>
+          <p class="chat__status"><span class="dot"></span>AI Assistant is online</p>
+        </div>
+        <button type="button" id="clearBtn" class="btn-ghost" aria-label="Clear conversation" title="Clear conversation">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/>
+          </svg>
+          <span>Clear</span>
+        </button>
+      </header>
+
+      <section id="chatWindow" class="chat__window" aria-live="polite">
+
+        <!-- Welcome screen (hidden after the first message) -->
+        <div id="welcome" class="welcome">
+          <div class="hero-bot">
+            <img src="{{ url_for('static', filename='ai.png') }}" alt="Aura AI robot">
+          </div>
+          <p class="welcome__kicker">YOUR PERSONAL AI ASSISTANT</p>
+          <h2 class="welcome__title">How can I help you today?</h2>
+          <p class="welcome__text">Ask me anything about your account, orders, payments, or refunds. I'm here to help.</p>
+
+          <div class="suggestions">
+            <button type="button" class="suggestion" data-question="How can I reset my password?">
+              <span class="suggestion__title">Reset password</span>
+              <span class="suggestion__text">Get back into your account</span>
+            </button>
+            <button type="button" class="suggestion" data-question="Where is my package?">
+              <span class="suggestion__title">Track my order</span>
+              <span class="suggestion__text">Find your latest delivery</span>
+            </button>
+            <button type="button" class="suggestion" data-question="What payment methods do you accept?">
+              <span class="suggestion__title">Payment methods</span>
+              <span class="suggestion__text">Explore payment options</span>
+            </button>
+            <button type="button" class="suggestion" data-question="Can I get a refund?">
+              <span class="suggestion__title">Refund policy</span>
+              <span class="suggestion__text">Questions about your refund</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages are appended here by script.js -->
+        <div id="messages" class="messages"></div>
+      </section>
+
+      <form id="chatForm" class="composer" autocomplete="off">
+        <textarea id="userInput" rows="1" maxlength="500" placeholder="Ask Aura anything..." aria-label="Your message"></textarea>
+        <button type="submit" id="sendBtn" class="composer__send" aria-label="Send message">↑</button>
+      </form>
+
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
